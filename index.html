@@ -3,12 +3,160 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+  <meta name="description" content="Personal website — about me, my photos, and the things I've built." />
+  <title>My Personal Site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
+
+  <main class="layout">
+    <!-- ===== Sidebar / profile card ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="avatar">
+        <!-- Replace this with your own photo: put it in assets/images/ and update the src -->
+        <img src="assets/images/avatar.jpg" alt="My photo"
+             onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar-fallback',textContent:'🙂'}))" />
+      </div>
+
+      <h1 class="name">Your Name</h1>
+      <p class="role">Student · Maker · Photographer</p>
+
+      <ul class="contacts">
+        <li>
+          <span class="ci">✉️</span>
+          <a href="mailto:you@example.com">you@example.com</a>
+        </li>
+        <li>
+          <span class="ci">📍</span>
+          <span>Seoul, South Korea</span>
+        </li>
+        <li>
+          <span class="ci">🎂</span>
+          <span>Born 2000</span>
+        </li>
+      </ul>
+
+      <div class="socials">
+        <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+      </div>
+    </aside>
+
+    <!-- ===== Main content ===== -->
+    <section class="content">
+      <nav class="tabs" id="tabs">
+        <button class="tab is-active" data-target="about">About</button>
+        <button class="tab" data-target="gallery">Gallery</button>
+        <button class="tab" data-target="projects">Projects</button>
+        <button class="tab" data-target="contact">Contact</button>
+      </nav>
+
+      <!-- About -->
+      <article class="panel is-active" id="about">
+        <h2 class="panel-title">About Me</h2>
+        <p>
+          Hi! I'm <strong>Your Name</strong>. This is my little corner of the internet where
+          I keep my photos and share the things I've made. I like keeping things
+          <em>simple and clear</em>.
+        </p>
+        <p>
+          Write a couple of sentences here about who you are, what you enjoy, and what
+          you're working on right now. Keep it friendly and honest — that's the whole point.
+        </p>
+
+        <h3 class="sub-title">What I do</h3>
+        <ul class="bullets">
+          <li>📷 Take and share photos</li>
+          <li>💻 Build small web projects and tools</li>
+          <li>📚 Learn something new every week</li>
+        </ul>
+
+        <h3 class="sub-title">A few things I did</h3>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">🚀</div>
+            <h4>Launched this website</h4>
+            <p>Built a clean personal site from a plain HTML/CSS/JS starter.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🎨</div>
+            <h4>Hobby projects</h4>
+            <p>Describe a side project you're proud of in a sentence or two.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🌱</div>
+            <h4>Always learning</h4>
+            <p>List a skill or topic you've been picking up recently.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Gallery -->
+      <article class="panel" id="gallery">
+        <h2 class="panel-title">My Pictures</h2>
+        <p class="hint">
+          Drop your image files into <code>assets/images/</code> and add them to the
+          <code>photos</code> list in <code>main.js</code>. Click a photo to view it larger.
+        </p>
+        <div class="grid" id="galleryGrid">
+          <!-- Photos are injected by main.js -->
+        </div>
+      </article>
+
+      <!-- Projects -->
+      <article class="panel" id="projects">
+        <h2 class="panel-title">Projects</h2>
+        <p>Some stuff I've built or worked on. Edit these in <code>index.html</code>.</p>
+        <div class="cards">
+          <a class="card project" href="#" target="_blank" rel="noopener">
+            <div class="card-icon">🛠️</div>
+            <h4>Project One</h4>
+            <p>What it is, what problem it solves, and the tools you used.</p>
+            <span class="tag">HTML · CSS · JS</span>
+          </a>
+          <a class="card project" href="#" target="_blank" rel="noopener">
+            <div class="card-icon">📱</div>
+            <h4>Project Two</h4>
+            <p>A short description of another thing you made.</p>
+            <span class="tag">Web</span>
+          </a>
+          <a class="card project" href="#" target="_blank" rel="noopener">
+            <div class="card-icon">⭐</div>
+            <h4>Project Three</h4>
+            <p>Add as many as you like — just copy one of these cards.</p>
+            <span class="tag">Design</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Contact -->
+      <article class="panel" id="contact">
+        <h2 class="panel-title">Get in Touch</h2>
+        <p>Want to say hi? Reach me through any of these:</p>
+        <ul class="contact-list">
+          <li>✉️ <a href="mailto:you@example.com">you@example.com</a></li>
+          <li>🐙 <a href="https://github.com/" target="_blank" rel="noopener">github.com/yourname</a></li>
+          <li>📸 <a href="https://instagram.com/" target="_blank" rel="noopener">@yourname</a></li>
+        </ul>
+      </article>
+
+      <footer class="footer">
+        © <span id="year"></span> Your Name · Built with plain HTML, CSS & JS
+      </footer>
+    </section>
+  </main>
+
+  <!-- Lightbox for viewing photos larger -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script defer src="/main.js"></script>
 </body>
 </html>
