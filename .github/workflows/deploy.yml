@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+# Publishes the site whenever you push to the main branch.
+on:
+  push:
+    # Deploys from main once merged, and from this branch for a live preview now.
+    branches: ["main", "master", "claude/nifty-bohr-n911gl"]
+  # Lets you trigger it manually from the Actions tab too.
+  workflow_dispatch:
+
+# Permissions the deploy needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deploy at a time; don't cancel an in-progress one.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          # Auto-enable Pages if it isn't turned on yet.
+          enablement: true
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # The whole repo root is the site (index.html lives here).
+          path: "."
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
